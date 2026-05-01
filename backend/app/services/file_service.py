@@ -14,7 +14,8 @@ from openpyxl import load_workbook
 from app.utils.serialization import dataframe_preview
 
 ALLOWED_EXTENSIONS = {".csv", ".tsv", ".txt", ".xlsx", ".json", ".jsonl"}
-MAX_UPLOAD_SIZE_MB = int(os.getenv("ANOMIRA_MAX_UPLOAD_MB", "8192"))
+DEFAULT_MAX_UPLOAD_MB = "4" if os.getenv("VERCEL") else "8192"
+MAX_UPLOAD_SIZE_MB = int(os.getenv("ANOMIRA_MAX_UPLOAD_MB", DEFAULT_MAX_UPLOAD_MB))
 MAX_UPLOAD_SIZE_BYTES = MAX_UPLOAD_SIZE_MB * 1024 * 1024 if MAX_UPLOAD_SIZE_MB > 0 else None
 MAX_CLOUD_DOWNLOAD_SIZE_MB = int(os.getenv("ANOMIRA_MAX_CLOUD_DOWNLOAD_MB", "8192"))
 MAX_CLOUD_DOWNLOAD_SIZE_BYTES = MAX_CLOUD_DOWNLOAD_SIZE_MB * 1024 * 1024 if MAX_CLOUD_DOWNLOAD_SIZE_MB > 0 else None
@@ -52,6 +53,8 @@ def get_upload_capabilities() -> Dict[str, Any]:
             "Full-data analysis is supported. Streamed temp-file ingestion is used for large datasets, "
             "cloud URL uploads are supported, TB-ready async job mode is available for very large text datasets, "
             "and GIS coordinate checks are included. "
+            "On Vercel, direct browser uploads are capped by Vercel's function payload limit; use Cloud URL analysis "
+            "for larger files. "
             "Set ANOMIRA_MAX_UPLOAD_MB<=0 and/or ANOMIRA_MAX_CLOUD_DOWNLOAD_MB<=0 for unbounded-mode limits."
         ),
     }

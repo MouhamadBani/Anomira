@@ -25,6 +25,8 @@ import {
 
 const FALLBACK_MAX_UPLOAD_MB = 8192;
 const FALLBACK_MAX_UPLOAD_BYTES = FALLBACK_MAX_UPLOAD_MB * 1024 * 1024;
+const VERCEL_PAYLOAD_LIMIT_MESSAGE =
+  "This file is too large for direct upload on Vercel. Use the Cloud Dataset URL field with a public or signed file URL, or deploy the backend on a service built for larger uploads.";
 
 function DashboardPage() {
   const [file, setFile] = useState(null);
@@ -159,7 +161,10 @@ function DashboardPage() {
       });
       setStatus("Analysis complete. Full dataset processed; review issues, anomalies, and auto-fix plan.");
     } catch (err) {
-      const message = err?.response?.data?.detail || err?.message || "Failed to process dataset.";
+      const message =
+        err?.response?.status === 413
+          ? VERCEL_PAYLOAD_LIMIT_MESSAGE
+          : err?.response?.data?.detail || err?.message || "Failed to process dataset.";
       setError(message);
     } finally {
       setLoadingAnalysis(false);
