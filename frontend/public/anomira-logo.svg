@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="anomiraTitle anomiraDesc">
+  <title id="anomiraTitle">Anomira Logo</title>
+  <desc id="anomiraDesc">Rounded square gradient icon with stylized A and anomaly pulse line.</desc>
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="48%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#1d4ed8"/>
+    </linearGradient>
+    <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect x="14" y="14" width="228" height="228" rx="56" fill="url(#bgGrad)"/>
+  <rect x="30" y="30" width="196" height="196" rx="40" fill="none" stroke="rgba(255,255,255,0.26)" stroke-width="2"/>
+
+  <path
+    d="M74 184 L124 72 C126 68 130 68 132 72 L182 184"
+    fill="none"
+    stroke="url(#lineGrad)"
+    stroke-width="18"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#softGlow)"
+  />
+  <path
+    d="M94 146 H162"
+    fill="none"
+    stroke="#ecfeff"
+    stroke-width="14"
+    stroke-linecap="round"
+    filter="url(#softGlow)"
+  />
+
+  <path
+    d="M48 206 H84 L104 184 L126 206 L150 166 L174 206 H208"
+    fill="none"
+    stroke="#e0f2fe"
+    stroke-width="7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    opacity="0.95"
+  />
+  <circle cx="150" cy="166" r="6.5" fill="#ffffff"/>
+</svg>
