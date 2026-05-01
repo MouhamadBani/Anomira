@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Frontend
+node_modules/
+dist/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local temp/audit artifacts
+.tmp_*/
+tmp_http_*/
+
+# Legacy nested folder kept as fallback during migration
+anomira/
